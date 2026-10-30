@@ -1,0 +1,25 @@
+# AND (ANAF for Dummies) în Docker — o singură instanță (anaf-for-dummies-app), accesibilă doar local (127.0.0.1).
+# Pornire recomandată: npm run docker:up  (alege automat un port liber și generează .env.docker)
+name: anaf-for-dummies
+
+services:
+  app:
+    build: .
+    image: anaf-for-dummies:latest
+    container_name: anaf-for-dummies-app
+    restart: unless-stopped
+    # Rețeaua bridge implicită: nu creăm o rețea nouă (nu consumă subrețele și nu interferează cu alte proiecte).
+    network_mode: bridge
+    ports:
+      - "127.0.0.1:${AFD_PORT:-3210}:3000"
+    env_file:
+      - path: .env.docker
+        required: false
+    environment:
+      APP_URL: ${APP_URL:-http://localhost:${AFD_PORT:-3210}}
+      SEED_DEMO: ${SEED_DEMO:-true}
+    volumes:
+      - anaf-for-dummies-data:/app/data
+
+volumes:
+  anaf-for-dummies-data:

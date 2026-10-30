@@ -1,0 +1,419 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --background: #f6f6fa;
+  --foreground: #0d0d18;
+  --card: #ffffff;
+  --card-foreground: #0d0d18;
+  --popover: #ffffff;
+  --popover-foreground: #0d0d18;
+  --muted: #f0f0f6;
+  --muted-foreground: #66667d;
+  --subtle: #f7f7fb;
+  --border: #e5e5ee;
+  --input: #dcdce7;
+  --ring: #7c6dfd;
+
+  --primary: #6d5dfc;
+  --primary-hover: #5b4aef;
+  --primary-foreground: #ffffff;
+  --primary-soft: #efedff;
+  --primary-soft-foreground: #4b3bd6;
+  --accent: #06b6d4;
+
+  --success: #16a34a;
+  --success-soft: #e8f8ee;
+  --success-soft-foreground: #15803d;
+  --warning: #d97706;
+  --warning-soft: #fff4e0;
+  --warning-soft-foreground: #b45309;
+  --danger: #e11d48;
+  --danger-soft: #ffe9ee;
+  --danger-soft-foreground: #be123c;
+  --info: #0284c7;
+  --info-soft: #e6f4fd;
+  --info-soft-foreground: #0369a1;
+
+  --sidebar: #fbfbfe;
+  --sidebar-border: #ececf3;
+  --shadow-color: 240 30% 20%;
+  --radius: 0.75rem;
+
+  --chart-1: #6d5dfc;
+  --chart-2: #06b6d4;
+  --chart-3: #22c55e;
+  --chart-4: #f59e0b;
+  --chart-5: #ec4899;
+}
+
+.dark {
+  --background: #08080d;
+  --foreground: #ececf4;
+  --card: #101018;
+  --card-foreground: #ececf4;
+  --popover: #13131c;
+  --popover-foreground: #ececf4;
+  --muted: #181822;
+  --muted-foreground: #9898ad;
+  --subtle: #0d0d14;
+  --border: #23232f;
+  --input: #2b2b39;
+  --ring: #8b7dff;
+
+  --primary: #8576ff;
+  --primary-hover: #9a8dff;
+  --primary-foreground: #ffffff;
+  --primary-soft: #1d1a3a;
+  --primary-soft-foreground: #b9b0ff;
+  --accent: #22d3ee;
+
+  --success: #22c55e;
+  --success-soft: #0f2a1a;
+  --success-soft-foreground: #6ee7a0;
+  --warning: #f59e0b;
+  --warning-soft: #2d2010;
+  --warning-soft-foreground: #fcd34d;
+  --danger: #f43f5e;
+  --danger-soft: #2e1018;
+  --danger-soft-foreground: #fda4b4;
+  --info: #38bdf8;
+  --info-soft: #0c2233;
+  --info-soft-foreground: #7dd3fc;
+
+  --sidebar: #0b0b11;
+  --sidebar-border: #1c1c27;
+  --shadow-color: 240 60% 2%;
+
+  --chart-1: #8576ff;
+  --chart-2: #22d3ee;
+  --chart-3: #4ade80;
+  --chart-4: #fbbf24;
+  --chart-5: #f472b6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-foreground: var(--primary-soft-foreground);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-soft-foreground: var(--success-soft-foreground);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-soft-foreground: var(--warning-soft-foreground);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-soft-foreground: var(--danger-soft-foreground);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-info-soft-foreground: var(--info-soft-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --shadow-soft: 0 1px 2px hsl(var(--shadow-color) / 0.04), 0 4px 16px -4px hsl(var(--shadow-color) / 0.08);
+  --shadow-lift: 0 2px 4px hsl(var(--shadow-color) / 0.05), 0 16px 40px -12px hsl(var(--shadow-color) / 0.18);
+  --shadow-glow: 0 0 0 1px color-mix(in oklab, var(--primary) 30%, transparent), 0 8px 32px -8px color-mix(in oklab, var(--primary) 55%, transparent);
+
+  --animate-shimmer: shimmer 2.2s linear infinite;
+  --animate-aurora: aurora 18s ease-in-out infinite alternate;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-gradient: gradient-x 8s ease infinite;
+  --animate-spin-slow: spin 3s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes aurora {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -6%, 0) rotate(8deg) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-5%, 4%, 0) rotate(-6deg) scale(1);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, currentColor 55%, transparent);
+  }
+  80%,
+  100% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Bază                                                                */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scrollbar-gutter: stable;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 25%, transparent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  /* Tranziție lină la schimbarea temei */
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition:
+      background-color 0.35s ease,
+      border-color 0.35s ease,
+      color 0.2s ease,
+      fill 0.35s ease !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilitare                                                           */
+/* ------------------------------------------------------------------ */
+
+@utility text-gradient {
+  background: linear-gradient(110deg, var(--primary) 0%, var(--accent) 55%, var(--primary) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@utility bg-dots {
+  background-image: radial-gradient(color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+
+@utility skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--muted) 0%,
+    color-mix(in oklab, var(--muted) 40%, var(--card)) 50%,
+    var(--muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--foreground) 18%, transparent) transparent;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------ */
+/* Print (facturi)                                                     */
+/* ------------------------------------------------------------------ */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+    /* Norme Cod fiscal pct. 97 alin. (1): paginile facturii se numerotează. */
+    @bottom-right {
+      content: "Pagina " counter(page) " din " counter(pages);
+      font-size: 8pt;
+      color: #5f6075;
+    }
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-page {
+    box-shadow: none !important;
+    border: none !important;
+    /* colțurile rotunjite + overflow ar tăia textul din colțul paginii */
+    border-radius: 0 !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Animații pentru primitivele Radix (intrare/ieșire pe data-state)    */
+/* ------------------------------------------------------------------ */
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes overlay-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+/* Centrarea vine din utilitarele Tailwind (proprietatea `translate`); aici animăm doar `transform`. */
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes dialog-out {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(8px) scale(0.97); }
+}
+@keyframes sheet-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes sheet-out-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+@keyframes sheet-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+@keyframes sheet-out-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(-4px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes pop-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.97); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.anim-overlay[data-state="open"] { animation: overlay-in 200ms ease-out; }
+.anim-overlay[data-state="closed"] { animation: overlay-out 150ms ease-in; }
+.anim-dialog[data-state="open"] { animation: dialog-in 280ms cubic-bezier(0.16, 1, 0.3, 1); }
+.anim-dialog[data-state="closed"] { animation: dialog-out 150ms ease-in; }
+.anim-sheet-right[data-state="open"] { animation: sheet-in-right 360ms cubic-bezier(0.16, 1, 0.3, 1); }
+.anim-sheet-right[data-state="closed"] { animation: sheet-out-right 200ms ease-in; }
+.anim-sheet-left[data-state="open"] { animation: sheet-in-left 360ms cubic-bezier(0.16, 1, 0.3, 1); }
+.anim-sheet-left[data-state="closed"] { animation: sheet-out-left 200ms ease-in; }
+.anim-pop[data-state="open"],
+.anim-pop[data-state="delayed-open"],
+.anim-pop[data-state="instant-open"] { animation: pop-in 180ms cubic-bezier(0.16, 1, 0.3, 1); }
+.anim-pop[data-state="closed"] { animation: pop-out 120ms ease-in; }
+.anim-fade-up { animation: fade-up 400ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* View Transitions — schimbarea temei cu „circular reveal” */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
