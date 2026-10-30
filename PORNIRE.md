@@ -2,21 +2,24 @@
 
 Aplicația rulează pe calculatorul tău, în Docker. Datele rămân doar la tine.
 
+## De ce ai nevoie
+
+- **Docker Desktop** — [docker.com](https://www.docker.com/products/docker-desktop/). Pornește-l după instalare (iconița cu balena trebuie să fie activă).
+- **Git** — [git-scm.com](https://git-scm.com/downloads). Pe Mac îl ai deja sau ți-l instalează sistemul la prima comandă `git`.
+- **Acces la repository** — e privat: proprietarul te adaugă pe GitHub (Settings → Collaborators), iar tu accepți invitația primită pe email.
+
 ## Prima pornire
 
-1. Instalează **Docker Desktop** de pe [docker.com](https://www.docker.com/products/docker-desktop/) și pornește-l (iconița cu balena trebuie să fie activă).
-2. Dezarhivează `AND-….zip` într-un folder.
-3. Deschide un terminal **în acel folder**:
-   - Mac: Terminal → scrie `cd ` (cu spațiu), trage folderul în fereastră, apasă Enter.
-   - Windows: click dreapta în folder → „Open in Terminal”.
-4. Rulează:
+1. Deschide un terminal (Mac: aplicația Terminal · Windows: PowerShell) și rulează:
 
    ```bash
+   git clone https://github.com/Ramphyi/anaf_for_dummies.git
+   cd anaf_for_dummies
    docker compose up -d --build
    ```
 
-   Prima dată durează câteva minute (descarcă și construiește aplicația).
-5. Deschide **http://localhost:3210** în browser.
+   La `git clone` ți se cere autentificarea GitHub (se deschide browserul). Prima pornire durează câteva minute — se descarcă și se construiește aplicația.
+2. Deschide **http://localhost:3210** în browser.
    - Cont demo, cu date de test: `demo@anaffordummies.ro` / `demo1234`
    - Sau „Creează unul gratuit” pentru contul și firma ta.
 
@@ -26,9 +29,11 @@ Aplicația rulează pe calculatorul tău, în Docker. Datele rămân doar la tin
 | --- | --- |
 | Oprești aplicația | `docker compose down` |
 | O pornești din nou | `docker compose up -d` |
-| Instalezi o versiune nouă | dezarhivezi peste cea veche, apoi `docker compose up -d --build` |
+| Instalezi o versiune nouă | `git pull`, apoi `docker compose up -d --build` |
 
-Datele (firme, facturi, conturi) se păstrează între opriri și actualizări.
+Datele (firme, facturi, conturi) se păstrează între opriri și actualizări — stau în Docker, nu în folderul clonat.
+
+Ai primit o arhivă `.zip` în loc de link? Dezarhiveaz-o, deschide terminalul în folderul ei și rulează doar `docker compose up -d --build`.
 
 ## Opțional
 

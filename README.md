@@ -62,11 +62,16 @@ npm run docker:down      # oprire
 
 ## Dai aplicația altcuiva
 
+Repository-ul e privat: adaugă persoana pe GitHub (*Settings → Collaborators*). Ea are nevoie doar de Git și Docker Desktop și urmează [PORNIRE.md](PORNIRE.md):
+
 ```bash
-npm run share    # → ../AND-AAAA-LL-ZZ.zip, fără .env*, fără data/ și fără node_modules
+git clone https://github.com/Ramphyi/anaf_for_dummies.git
+cd anaf_for_dummies
+docker compose up -d --build     # → http://localhost:3210
 ```
 
-Destinatarul are nevoie doar de Docker Desktop și urmează [PORNIRE.md](PORNIRE.md) (`docker compose up -d --build`). La prima pornire, containerul generează singur secretele aplicației și le păstrează în volumul de date; cheia OpenAI și-o pune fiecare în `.env.docker`.
+La prima pornire containerul generează singur secretele aplicației și le păstrează în volumul de date. Cheile (`.env.local`, `.env.docker`) și baza de date (`data/`) nu intră în git; cheia OpenAI și-o pune fiecare în `.env.docker`.
+Fără acces la GitHub: `npm run share` creează o arhivă `.zip` curată (fără chei și fără date).
 
 ## Dezvoltare locală
 
